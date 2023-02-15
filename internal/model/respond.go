@@ -1,14 +1,10 @@
 package model
 
-type Respond struct {
-	UserExist bool
-	UserValid bool
-	Message   string
+type AuthRespond struct {
+	Valid   bool
+	Exist   bool
+	Message string
 }
 
-func NewRespond() *Respond {
-	return &Respond{
-		UserValid: false,
-		Message:   "",
-	}
+type SearchRespond struct {
 }

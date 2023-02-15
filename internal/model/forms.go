@@ -1,8 +1,8 @@
 package model
 
-type User struct {
-	Id       int    `json:"id"`
+type AuthForm struct {
 	Login    string `json:"login"`
 	Password string `json:"password"`
-	Name     string `json:"name"`
+}
+type SearchForm struct {
 }
