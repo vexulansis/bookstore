@@ -1,6 +1,8 @@
 package server
 
-import "project/internal/model"
+import (
+	"project/internal/model"
+)
 
 func (s *Server) SignUp(u *model.User) *model.AuthRespond {
 	res := &model.AuthRespond{
@@ -21,6 +23,18 @@ func (s *Server) SignUp(u *model.User) *model.AuthRespond {
 	}
 
 }
-func (s *Server) SignIn(u *model.User) {
-
+func (s *Server) SignIn(u *model.User) *model.AuthRespond {
+	res := &model.AuthRespond{
+		Valid: s.ValidateUser(u),
+		Exist: s.UserExist(u),
+	}
+	if res.Exist {
+		switch {
+		case s.UserAccess(u):
+			res.Message = "Access"
+		default:
+			res.Message = "Incorrect login or password"
+		}
+	}
+	return res
 }

@@ -17,5 +17,9 @@ func (s *Server) UserExist(u *model.User) bool {
 
 // добавить валидацию логина и пароля
 func (s *Server) ValidateUser(u *model.User) bool {
+	switch {
+	case len(u.Login) < 4 || len(u.Password) < 6:
+		return false
+	}
 	return true
 }

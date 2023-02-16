@@ -26,7 +26,7 @@ func (s *SearchAuth) Search() []*model.User {
 		}
 		for rows.Next() {
 			user := new(model.User)
-			err = rows.Scan(&user.User_id, &user.Email, &user.City_id)
+			err = rows.Scan(&user.User_id, &user.Login, &user.Password)
 			if err != nil {
 				ErrorLog("Error scanning rows")
 			}
@@ -39,7 +39,7 @@ func (s *SearchAuth) Search() []*model.User {
 		}
 		for rows.Next() {
 			user := new(model.User)
-			err = rows.Scan(&user.User_id, &user.Email, &user.City_id)
+			err = rows.Scan(&user.User_id, &user.Login, &user.Password)
 			if err != nil {
 				ErrorLog("Error scanning rows")
 			}
@@ -52,7 +52,7 @@ func (s *SearchAuth) Search() []*model.User {
 		}
 		for rows.Next() {
 			user := new(model.User)
-			err = rows.Scan(&user.User_id, &user.Email, &user.City_id)
+			err = rows.Scan(&user.User_id, &user.Login, &user.Password)
 			if err != nil {
 				ErrorLog("Error scanning rows")
 			}

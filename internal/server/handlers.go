@@ -30,10 +30,19 @@ func (s *Server) Auth(w http.ResponseWriter, r *http.Request) {
 			Login:    r.FormValue("login"),
 			Password: r.FormValue("password"),
 		}
-		authRespond := s.SignUp(user)
-		err = tmpl.Execute(w, authRespond)
-		if err != nil {
-			ErrorLog("Error executing form.html template")
+		switch r.FormValue("button") {
+		case "signup":
+			authRespond := s.SignUp(user)
+			err = tmpl.Execute(w, authRespond)
+			if err != nil {
+				ErrorLog("Error executing form.html template")
+			}
+		case "signin":
+			authRespond := s.SignIn(user)
+			err = tmpl.Execute(w, authRespond)
+			if err != nil {
+				ErrorLog("Error executing form.html template")
+			}
 		}
 	}
 }
