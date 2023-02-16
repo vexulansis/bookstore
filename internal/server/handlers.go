@@ -30,11 +30,7 @@ func (s *Server) Auth(w http.ResponseWriter, r *http.Request) {
 			Login:    r.FormValue("login"),
 			Password: r.FormValue("Password"),
 		}
-		authRespond := model.AuthRespond{
-			Valid:   s.ValidateUser(user),
-			Exist:   s.UserExist(user),
-			Message: "Invalid login or password",
-		}
+		authRespond := s.SignUp(user)
 		err = tmpl.Execute(w, authRespond)
 		if err != nil {
 			ErrorLog("Error executing form.html template")

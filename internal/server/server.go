@@ -29,8 +29,8 @@ func NewServer(store *store.Store) *Server {
 }
 func (s *Server) configureRouter() {
 	s.Router.Use(handlers.CORS(corsObj))
-	s.Router.HandleFunc("/auth", s.Auth).Methods("GET")
-	s.Router.HandleFunc("/auth", s.Auth).Methods("POST")
+	s.Router.HandleFunc("/", s.Auth).Methods("GET")
+	s.Router.HandleFunc("/", s.Auth).Methods("POST")
 
 }
 
