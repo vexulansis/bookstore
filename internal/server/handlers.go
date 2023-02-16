@@ -28,7 +28,7 @@ func (s *Server) Auth(w http.ResponseWriter, r *http.Request) {
 	case "POST":
 		user := &model.User{
 			Login:    r.FormValue("login"),
-			Password: r.FormValue("Password"),
+			Password: r.FormValue("password"),
 		}
 		authRespond := s.SignUp(user)
 		err = tmpl.Execute(w, authRespond)
