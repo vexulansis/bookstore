@@ -46,3 +46,16 @@ func (s *Server) Auth(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+func (s *Server) Library(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("library.html")
+	if err != nil {
+		ErrorLog("Error parsing library.html file")
+	}
+	su := SearchAuth{
+		DB: s.Store.DB,
+	}
+	libraryRespond := model.LibraryRespond{
+		Users: su.Search(),
+	}
+	err = tmpl.Execute(w, libraryRespond.Users)
+}

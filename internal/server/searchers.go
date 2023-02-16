@@ -58,6 +58,19 @@ func (s *SearchAuth) Search() []*model.User {
 			}
 			users = append(users, user)
 		}
+	default:
+		rows, err := s.DB.Query("select * from auth")
+		if err != nil {
+			ErrorLog("Error executing query")
+		}
+		for rows.Next() {
+			user := new(model.User)
+			err = rows.Scan(&user.User_id, &user.Login, &user.Password)
+			if err != nil {
+				ErrorLog("Error scanning rows")
+			}
+			users = append(users, user)
+		}
 	}
 	return users
 }
@@ -100,6 +113,19 @@ func (s *SearchUsers) Search() []*model.User {
 		}
 	case s.WithCityId != 0:
 		rows, err := s.DB.Query("select * from users where city_id=$1", s.WithCityId)
+		if err != nil {
+			ErrorLog("Error executing query")
+		}
+		for rows.Next() {
+			user := new(model.User)
+			err = rows.Scan(&user.User_id, &user.Email, &user.City_id)
+			if err != nil {
+				ErrorLog("Error scanning rows")
+			}
+			users = append(users, user)
+		}
+	default:
+		rows, err := s.DB.Query("select * from users")
 		if err != nil {
 			ErrorLog("Error executing query")
 		}

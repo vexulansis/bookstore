@@ -8,3 +8,6 @@ type AuthRespond struct {
 
 type SearchRespond struct {
 }
+type LibraryRespond struct {
+	Users []*User
+}

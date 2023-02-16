@@ -31,7 +31,8 @@ func (s *Server) configureRouter() {
 	s.Router.Use(handlers.CORS(corsObj))
 	s.Router.HandleFunc("/", s.Auth).Methods("GET")
 	s.Router.HandleFunc("/", s.Auth).Methods("POST")
-
+	s.Router.HandleFunc("/library", s.Library).Methods("GET")
+	s.Router.HandleFunc("/library", s.Library).Methods("POST")
 }
 
 func (s *Server) Start() {
